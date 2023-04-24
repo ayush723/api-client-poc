@@ -1,4 +1,4 @@
-module github.com/ayush723/api-client-poc
+module api-client-poc
 
 go 1.19
 
