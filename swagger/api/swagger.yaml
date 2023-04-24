@@ -1,0 +1,78 @@
+openapi: 3.0.1
+info:
+  title: the API used to use the Map Authority map management server
+  description: This is the public REST interface to the map management server
+  version: 1.0.0
+servers:
+- url: http://localhost:9000/v1
+security:
+- ApiKeyAuth:
+  - "[]"
+paths:
+  /books:
+    get:
+      description: Returns a list of books
+      operationId: GetBooks
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+                x-content-type: application/json
+components:
+  schemas:
+    Book:
+      required:
+      - author
+      - id
+      - price
+      - title
+      type: object
+      properties:
+        author:
+          type: string
+          description: Author is author of the book
+          x-go-name: Author
+        id:
+          type: string
+          description: ID is id of book
+          x-go-name: ID
+        price:
+          type: number
+          description: Price is the price of book
+          format: double
+          x-go-name: Price
+        title:
+          type: string
+          description: Title is title of book
+          x-go-name: Title
+      example:
+        author: author
+        price: 0.8008281904610115
+        id: id
+        title: title
+      x-go-package: api-client-poc
+  responses:
+    GetBooksResponse:
+      description: ""
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Book'
+        application/x-zserio-object:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Book'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-original-swagger-version: "2.0"

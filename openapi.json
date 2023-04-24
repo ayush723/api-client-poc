@@ -1,0 +1,96 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json",
+    "application/x-zserio-object"
+  ],
+  "schemes": [
+    "http"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the public REST interface to the map management server",
+    "title": "the API used to use the Map Authority map management server",
+    "version": "1.0.0"
+  },
+  "host": "localhost:9000",
+  "basePath": "/v1",
+  "paths": {
+    "/books": {
+      "get": {
+        "description": "Returns a list of books",
+        "produces": [
+          "application/json"
+        ],
+        "operationId": "GetBooks",
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GetBooksResponse"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Book": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "author",
+        "price"
+      ],
+      "properties": {
+        "author": {
+          "description": "Author is author of the book",
+          "type": "string",
+          "x-go-name": "Author"
+        },
+        "id": {
+          "description": "ID is id of book",
+          "type": "string",
+          "x-go-name": "ID"
+        },
+        "price": {
+          "description": "Price is the price of book",
+          "type": "number",
+          "format": "double",
+          "x-go-name": "Price"
+        },
+        "title": {
+          "description": "Title is title of book",
+          "type": "string",
+          "x-go-name": "Title"
+        }
+      },
+      "x-go-package": "api-client-poc"
+    }
+  },
+  "responses": {
+    "GetBooksResponse": {
+      "description": "",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Book"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "x-api-key",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": [
+        "[]"
+      ]
+    }
+  ]
+}
