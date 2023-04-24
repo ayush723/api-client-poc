@@ -19,10 +19,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
-                x-content-type: application/json
+                $ref: '#/components/schemas/Book'
 components:
   schemas:
     Book:
@@ -55,21 +52,17 @@ components:
         price: 0.8008281904610115
         id: id
         title: title
-      x-go-package: api-client-poc
+      x-go-package: github.com/ayush723/api-client-poc
   responses:
     GetBooksResponse:
       description: ""
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Book'
+            $ref: '#/components/schemas/Book'
         application/x-zserio-object:
           schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/Book'
+            $ref: '#/components/schemas/Book'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

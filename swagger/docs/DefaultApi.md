@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**GetBooks**](DefaultApi.md#GetBooks) | **Get** /books | 
 
 # **GetBooks**
-> []Book GetBooks(ctx, )
+> Book GetBooks(ctx, )
 
 
 Returns a list of books
@@ -17,7 +17,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**[]Book**](Book.md)
+[**Book**](Book.md)
 
 ### Authorization
 

@@ -65,17 +65,14 @@
           "x-go-name": "Title"
         }
       },
-      "x-go-package": "api-client-poc"
+      "x-go-package": "github.com/ayush723/api-client-poc"
     }
   },
   "responses": {
     "GetBooksResponse": {
       "description": "",
       "schema": {
-        "type": "array",
-        "items": {
-          "$ref": "#/definitions/Book"
-        }
+        "$ref": "#/definitions/Book"
       }
     }
   },

@@ -26,8 +26,6 @@ type Book struct {
 	Price float64 `json:"price,omitempty"`
 }
 
-var books []Book
-
 func GetBooks(w http.ResponseWriter, r *http.Request) {
 	// swagger:route GET /books GetBooks
 	//
@@ -43,21 +41,22 @@ func GetBooks(w http.ResponseWriter, r *http.Request) {
 	type Response struct {
 		// in: body
 		// the books for this user
-		Books []Book `json:"books"`
+		Books Book `json:"books"`
 	}
 
-	var boos []Book
-	boos = append(boos, Book{ID: "1", Title: "Book 1", Author: "Author 1", Price: 9.99})
-	boos = append(boos, Book{ID: "2", Title: "Book 2", Author: "Author 2", Price: 14.99})
-	fmt.Printf("returned:%v\n", boos)
-	json.NewEncoder(w).Encode(Response{Books: boos})
+	//var boos []Book
+	book := Book{
+		ID: "1", Title: "Book 1", Author: "Author 1", Price: 9.99,
+	}
+	//boos = append(boos, Book{ID: "1", Title: "Book 1", Author: "Author 1", Price: 9.99})
+	//boos = append(boos, Book{ID: "2", Title: "Book 2", Author: "Author 2", Price: 14.99})
+	fmt.Printf("returned:%v\n", book)
+	json.NewEncoder(w).Encode(Response{Books: book})
 }
 
 func main() {
 	router := mux.NewRouter()
 	v1 := router.PathPrefix("/v1").Subrouter()
-	books = append(books, Book{ID: "1", Title: "Book 1", Author: "Author 1", Price: 9.99})
-	books = append(books, Book{ID: "2", Title: "Book 2", Author: "Author 2", Price: 14.99})
 
 	v1.HandleFunc("/books", GetBooks).Methods(http.MethodGet)
 

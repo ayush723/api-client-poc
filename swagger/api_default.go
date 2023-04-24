@@ -27,15 +27,15 @@ type DefaultApiService service
 DefaultApiService
 Returns a list of books
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-@return []Book
+@return Book
 */
-func (a *DefaultApiService) GetBooks(ctx context.Context) ([]Book, *http.Response, error) {
+func (a *DefaultApiService) GetBooks(ctx context.Context) (Book, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   string
 		localVarFileBytes  []byte
-		localVarReturnValue []Book
+		localVarReturnValue Book
 	)
 
 	// create path and map variables
@@ -105,7 +105,7 @@ func (a *DefaultApiService) GetBooks(ctx context.Context) ([]Book, *http.Respons
 			error: localVarHttpResponse.Status,
 		}
 		if localVarHttpResponse.StatusCode == 200 {
-			var v []Book
+			var v Book
 			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
 				if err != nil {
 					newErr.error = err.Error()
